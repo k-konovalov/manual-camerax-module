@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ru.konovalovk.manual_camerax_module.ui.CameraFragment">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/pvPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="-1dp"/>
+
+    <LinearLayout
+        android:id="@+id/llSwitchesPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B3FFFFFF"
+        android:elevation="1dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sAutoIsoShutter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:checked="false"
+            android:elevation="1dp"
+            android:enabled="true"
+            android:padding="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:text="AE"
+            android:textAlignment="center" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sAF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:padding="0dp"
+            android:paddingEnd="4dp"
+            android:text="AF"
+            android:textAlignment="center" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sAutoWB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:padding="0dp"
+            android:paddingEnd="4dp"
+            android:text="AWB"
+            android:textAlignment="center" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/sFlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:padding="0dp"
+            android:paddingEnd="4dp"
+            android:text="Flash"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_settings"
+            android:text="Button" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clOntervalPhotoNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B3FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llSwitchesPanel">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/GeneralTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ems="10"
+            android:hint="Delay, sec"
+            app:layout_constraintEnd_toStartOf="@+id/textInputLayout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDelayBetweenPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout2"
+            style="@style/GeneralTextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:ems="10"
+            android:hint="Photo Num"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNumberOfPhotos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSettingsPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/sbWb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="1dp"
+            android:max="100"
+            app:isb_show_indicator="none"
+            app:isb_show_thumb_text="true"
+            app:isb_thumb_color="#FFFFFF"
+            app:isb_thumb_text_color="#FFFFFF"
+            app:isb_track_progress_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvWB"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvWB"
+            app:layout_constraintTop_toTopOf="@+id/tvWB" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/sbFocus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="1dp"
+            android:max="10"
+            app:isb_show_indicator="none"
+            app:isb_show_thumb_text="true"
+            app:isb_thumb_color="#FFFFFF"
+            app:isb_thumb_text_color="#FFFFFF"
+            app:isb_track_progress_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvFocus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvFocus"
+            app:layout_constraintTop_toTopOf="@+id/tvFocus" />
+
+        <ImageButton
+            android:id="@+id/fabTakePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:src="@drawable/ic_take_picture"
+            app:layout_constraintBottom_toTopOf="@id/sbShutter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvFocus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#B3FFFFFF"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="Focus"
+            app:layout_constraintBottom_toTopOf="@+id/tvISO"
+            app:layout_constraintEnd_toStartOf="@+id/sbFocus"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvISO"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#B3FFFFFF"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="ISO"
+            app:layout_constraintBottom_toTopOf="@+id/tvWB"
+            app:layout_constraintEnd_toStartOf="@+id/sbISO"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/sbISO"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="1dp"
+            android:max="6400"
+            app:isb_show_indicator="none"
+            app:isb_show_thumb_text="true"
+            app:isb_thumb_color="#FFFFFF"
+            app:isb_thumb_text_color="#FFFFFF"
+            app:isb_track_progress_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvISO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvISO"
+            app:layout_constraintTop_toTopOf="@+id/tvISO" />
+
+        <TextView
+            android:id="@+id/tvWB"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#B3FFFFFF"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="WB"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sbWb"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/sbShutter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="1dp"
+            android:max="18"
+            app:isb_show_indicator="none"
+            app:isb_show_thumb_text="true"
+            app:isb_thumb_color="#FFFFFF"
+            app:isb_thumb_text_color="#FFFFFF"
+            app:isb_track_progress_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvExposure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvExposure"
+            app:layout_constraintTop_toTopOf="@+id/tvExposure" />
+
+        <com.warkiz.widget.IndicatorSeekBar
+            android:id="@+id/sbFrameDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:elevation="1dp"
+            android:max="100"
+            android:visibility="gone"
+            app:isb_show_indicator="none"
+            app:isb_show_thumb_text="true"
+            app:isb_thumb_color="#FFFFFF"
+            app:isb_thumb_text_color="#FFFFFF"
+            app:isb_track_progress_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvFrameDuration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvFrameDuration"
+            app:layout_constraintTop_toTopOf="@+id/tvFrameDuration" />
+
+        <TextView
+            android:id="@+id/tvExposure"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#B3FFFFFF"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="Shutter"
+            app:layout_constraintBottom_toTopOf="@+id/tvFocus"
+            app:layout_constraintEnd_toStartOf="@+id/sbShutter"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFrameDuration"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#B3FFFFFF"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="FD"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tvExposure"
+            app:layout_constraintEnd_toStartOf="@+id/sbFrameDuration"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
